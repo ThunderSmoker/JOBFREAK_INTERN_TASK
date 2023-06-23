@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic Content Example</title>
+    <style>
+        body {
+            background-image: linear-gradient(to right, #00b09b, #96c93d);
+            font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        
+         #leftPanel {
+            width: 200px;
+            background-color: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            margin-top: 200px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }   
+        
+        #content {
+            flex: 1;
+            padding: 20px;
+        }
+        
+        h1 {
+            color: #333;
+        }
+        
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        li {
+            margin-bottom: 10px;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+        
+        .active {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="leftPanel">
+        <ul>
+            <li><a href="#" onclick="showContent('home')">Home</a></li>
+            <li><a href="#" onclick="showContent('contact')">Contact</a></li>
+            <li><a href="#" onclick="showContent('information')">Information</a></li>
+            <li><a href="#" onclick="showContent('guide')">Guide</a></li>
+        </ul>
+    </div>
+    <div id="content">
+        <h1>Welcome to the Dynamic Content Example</h1>
+        <p>Select a component from the left panel to view its content.</p>
+    </div>
+
+    <script>
+        function showContent(component) {
+           
+            var links = document.getElementsByTagName('a');
+            for (var i = 0; i < links.length; i++) {
+                links[i].classList.remove('active');
+            }
+
+           
+            var selectedLink = document.querySelector('a[href="#"][onclick="showContent(\'' + component + '\')"]');
+            selectedLink.classList.add('active');
+
+        
+            var contentElement = document.getElementById('content');
+            switch (component) {
+                case 'home':
+                    contentElement.innerHTML = '<h1>Home</h1><p>Home content goes here.</p>';
+                    break;
+                case 'contact':
+                    contentElement.innerHTML = '<h1>Contact</h1><p>Contact information goes here.</p>';
+                    break;
+                case 'information':
+                    contentElement.innerHTML = '<h1>Information</h1><p>Information content goes here.</p>';
+                    break;
+                case 'guide':
+                    contentElement.innerHTML = '<h1>Guide</h1><p>Guide content goes here.</p>';
+                    break;
+                default:
+                    contentElement.innerHTML = '<h1>Welcome to the Dynamic Content Example</h1><p>Select a component from the left panel to view its content.</p>';
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>
